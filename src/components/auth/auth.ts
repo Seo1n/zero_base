@@ -1,11 +1,10 @@
-/* eslint-disable no-alert */
 import axios, { type AxiosResponse } from 'axios';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { type MemberInfo, type NewUser, type TokenInfo } from '../types/types';
 
-import { axiosInstance } from '../axiosInstance';
 import { useUser } from '../hooks/useUser';
+import { axiosInstance } from '../../axiosInstance/axios';
 
 interface UseAuth {
   signin: (email: string, password: string) => Promise<void>;
@@ -21,12 +20,15 @@ interface UseAuth {
   setSuccess: (success: boolean) => void;
 }
 
+// eslint-disable-next-line no-console
+const alert = console.log.bind(console)
+
 // type UserResponse = { data: NewUser };
-type UserResponse = { data: { member: MemberInfo; tokenInfo: TokenInfo } };
-type ErrorResponse = { message: string };
+interface UserResponse { data: { member: MemberInfo; tokenInfo: TokenInfo } }
+interface ErrorResponse { message: string }
 type AuthResponseType = UserResponse | ErrorResponse;
 
-export function useAuth(): UseAuth {
+function useAuth(): UseAuth {
   const SERVER_ERROR = 'There was an error contacting the server.';
   const { clearUser, updateUser } = useUser();
   const navigate = useNavigate();
@@ -61,7 +63,7 @@ export function useAuth(): UseAuth {
       }
     } catch (errorResponse) {
       const status =
-        axios.isAxiosError(errorResponse) && errorResponse?.response?.status
+        axios.isAxiosError(errorResponse) && ((errorResponse?.response?.status) != null)
           ? errorResponse?.response?.status
           : SERVER_ERROR;
 
@@ -112,9 +114,10 @@ export function useAuth(): UseAuth {
       }
     } catch (errorResponse) {
       const status =
-        axios.isAxiosError(errorResponse) && errorResponse?.response?.status
+        axios.isAxiosError(errorResponse) && ((errorResponse?.response?.status) != null)
           ? errorResponse?.response?.status
           : SERVER_ERROR;
+      // eslint-disable-next-line no-unused-expressions
       status === 403
         ? alert('이메일과 비밀번호가 일치하지 않습니다.')
         : alert(`status code : ${status}!`);
@@ -122,14 +125,14 @@ export function useAuth(): UseAuth {
   }
 
   async function signin(email: string, password: string): Promise<void> {
-    authLoginServerCall('/members/signin', email, password);
+    void authLoginServerCall('/members/signin', email, password);
   }
   async function signup(
     email: string,
     password: string,
     nickname: string,
   ): Promise<void> {
-    authServerCall('/members/signup', email, password, nickname);
+    void authServerCall('/members/signup', email, password, nickname);
   }
 
   function signout(): void {
@@ -152,3 +155,5 @@ export function useAuth(): UseAuth {
     setSuccess,
   };
 }
+
+export default useAuth

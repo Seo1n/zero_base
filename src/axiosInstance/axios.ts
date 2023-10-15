@@ -1,4 +1,4 @@
-import axios, { AxiosRequestConfig } from 'axios';
+import axios, { type AxiosRequestConfig } from 'axios';
 import { type User } from '../components/types/types';
 
 import { baseUrl } from './constants';

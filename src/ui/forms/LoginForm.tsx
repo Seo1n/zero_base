@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 import {
 	Anchor,
 	Box,
@@ -17,18 +16,15 @@ import {
 import { useForm } from '@mantine/form';
 import { type ReactElement } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
-import React from 'react';
-
-//   import { useAuth } from '../../../auth/useAuth';
-//   import { useInput } from '../../common/hooks/useInput';
+import useAuth from '../../components/auth/auth';
+import { useInput } from '../../components/hooks/useInput';
 
 function LoginForm(props: PaperProps): ReactElement {
 	const navigate = useNavigate();
-	// const [email, onChangeEmail, setEmail] = useInput('');
-	// const [password, onChangePassword, setPassword] = useInput('');
-	// const auth = useAuth();
+	const [email, onChangeEmail, setEmail] = useInput('');
+	const [password, onChangePassword, setPassword] = useInput('');
+	const auth = useAuth();
 
-	// eslint-disable-next-line no-unused-vars
 	const form = useForm({
 		initialValues: {
 			email: '',
@@ -69,10 +65,10 @@ function LoginForm(props: PaperProps): ReactElement {
 				</Text>
 
 				<Form
-				//   onSubmit={form.onSubmit((values) => {
-				//     setEmail(values.email);
-				//     setPassword(values.password);
-				//   })}
+					onSubmit={form.onSubmit(values => {
+						setEmail(values.email);
+						setPassword(values.password);
+					})}
 				>
 					<Stack>
 						<TextInput
@@ -81,8 +77,8 @@ function LoginForm(props: PaperProps): ReactElement {
 							label="이메일 입력"
 							placeholder="user@roadmaker.com"
 							autoComplete="current-email"
-							//   value={email}
-							//   onChange={onChangeEmail}
+							value={email}
+							onChange={onChangeEmail}
 							radius="md"
 							size="md"
 						/>
@@ -92,8 +88,8 @@ function LoginForm(props: PaperProps): ReactElement {
 							label="비밀번호"
 							placeholder="Your password"
 							autoComplete="current-password"
-							//   value={password}
-							//   onChange={onChangePassword}
+							value={password}
+							onChange={onChangePassword}
 							radius="md"
 							size="md"
 						/>
@@ -105,7 +101,7 @@ function LoginForm(props: PaperProps): ReactElement {
 							size="lg"
 							fullWidth
 							variant="light"
-							//   onClick={() => auth.signin(email, password)}
+							onClick={async () => auth.signin(email, password)}
 						>
 							로그인
 						</Button>

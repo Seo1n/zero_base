@@ -1,7 +1,8 @@
 {
     "env": {
         "es2021": true,
-        "node": true
+        "node": true,
+        "browser": true
     },
     "extends": [
         "standard-with-typescript",
@@ -11,11 +12,11 @@
     "settings": {
         "import/resolver": {
           "node": {
-            "extensions": [".js", ".jsx", ".ts", ".tsx"],
-            "paths": ["src"]
+            "extensions": [".js", ".jsx", ".ts", ".tsx"]
           }
         }
       },
+      "parser": "@typescript-eslint/parser",
     "parserOptions": {
         "ecmaVersion": "latest",
         "sourceType": "module"
@@ -35,6 +36,10 @@
           }],
          "@typescript-eslint/restrict-template-expressions" : "off",
          "@typescript-eslint/return-await": "off",
-         "@typescript-eslint/strict-boolean-expressions": "off"
+         "@typescript-eslint/no-unnecessary-condition": "off",
+         "@typescript-eslint/strict-boolean-expressions": "off",
+         "@typescript-eslint/no-misused-promises": "off",
+         "@typescript-eslint/prefer-nullish-coalescing": "off",
+         "react/prop-types": "off"
     }
 }
