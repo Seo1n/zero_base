@@ -16,7 +16,6 @@ import { useNavigate } from 'react-router-dom';
 import { baseUrl } from '../../axiosInstance/constants';
 import useUser from '../../components/hooks/useUser';
 
-
 const useStyles = createStyles(theme => ({
 	card: {
 		backgroundColor:
@@ -148,9 +147,9 @@ export default function UserRoadmap() {
 										setCurrentPage(article.id);
 									}}
 									onClick={() => {
-                                        if (currentPage) {
-                                            navigate(`/roadmap/post/${currentPage}`)
-                                        }
+										if (currentPage) {
+											navigate(`/roadmap/post/${currentPage}`);
+										}
 									}}
 								>
 									<Image
@@ -165,8 +164,8 @@ export default function UserRoadmap() {
 										onClick={e => {
 											e.stopPropagation();
 											if (currentPage) {
-                                                navigate(`/roadmap/post/${currentPage}`)
-                                            }
+												navigate(`/roadmap/post/${currentPage}`);
+											}
 										}}
 									/>
 									<Text fw={700} className={classes.title} mx={20}>
@@ -220,8 +219,8 @@ export default function UserRoadmap() {
 									}}
 									onClick={() => {
 										if (currentPage) {
-                                            navigate(`/roadmap/post/${currentPage}`)
-                                        }
+											navigate(`/roadmap/post/${currentPage}`);
+										}
 									}}
 								>
 									<Image
@@ -236,8 +235,8 @@ export default function UserRoadmap() {
 										onClick={e => {
 											e.stopPropagation();
 											if (currentPage) {
-                                                navigate(`/roadmap/post/${currentPage}`)
-                                            }
+												navigate(`/roadmap/post/${currentPage}`);
+											}
 										}}
 									/>
 									<Text fw={700} className={classes.title} mx={20}>

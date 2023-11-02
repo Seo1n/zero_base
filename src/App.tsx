@@ -3,6 +3,7 @@ import { RouterProvider, createBrowserRouter } from 'react-router-dom';
 import { QueryClientProvider } from 'react-query';
 import { ReactQueryDevtools } from 'react-query/devtools';
 import { Notifications } from '@mantine/notifications';
+import RoadMapEditor from './ui/editor/roadmapTextEditor';
 import { queryClient } from './components/react-query/queryClient';
 import SignUpForm from './ui/forms/SignupForm';
 import LoginForm from './ui/forms/LoginForm';
@@ -22,20 +23,20 @@ function App() {
 					element: <LoginForm />
 				},
 				{ path: 'users/signup', element: <SignUpForm /> },
-				// {
-				//   path: 'roadmap/editor',
-				//   element: <RoadMapEditor />,
-				// },
+				{
+					path: 'roadmap/editor',
+					element: <RoadMapEditor />
+				},
 				// { path: '/roadmap/post/:Id', element: <RoadMapPostPage /> },
 				// {
 				//   path: '/roadmap/post/search/:keyword',
 				//   element: <KeywordSearchRoadmaps />,
 				// },
 				{
-				  path: 'users/mypage',
-				  element: <UserProfile />,
+					path: 'users/mypage',
+					element: <UserProfile />
 				},
-				{ path: 'users/mypage/edit', element: <EditUserProfile /> },
+				{ path: 'users/mypage/edit', element: <EditUserProfile /> }
 			]
 		}
 	]);

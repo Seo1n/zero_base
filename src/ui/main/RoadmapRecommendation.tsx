@@ -174,60 +174,59 @@ export default function RoadmapRecommendation() {
 					{ maxWidth: 'lg', cols: 3 }
 				]}
 			>
-				{data.pages.map((pageData) =>
-						pageData.result.map((article, index) => (
-							<Card key={index} className={classes.card}>
-								<Card.Section
-									className={classes.section}
-									onMouseOver={() => {
-										setCurrentPage(article.id);
-									}}
-									onClick={() => {
-										if (currentPage) {
-											navigate(`/roadmap/post/${currentPage}`);
-										  }
-									}}
-								>
-									<Group>
-										<div className={classes.item}>
-											<BlurredImg
+				{data.pages.map(pageData =>
+					pageData.result.map((article, index) => (
+						<Card key={index} className={classes.card}>
+							<Card.Section
+								className={classes.section}
+								onMouseOver={() => {
+									setCurrentPage(article.id);
+								}}
+								onClick={() => {
+									if (currentPage) {
+										navigate(`/roadmap/post/${currentPage}`);
+									}
+								}}
+							>
+								<Group>
+									<div className={classes.item}>
+										<BlurredImg
+											className={`${isLoading ? 'before' : 'loaded'}`}
+										>
+											<Image
 												className={`${isLoading ? 'before' : 'loaded'}`}
-											>
-												<Image
-													className={`${isLoading ? 'before' : 'loaded'}`}
-													src={article.thumbnailUrl}
-													alt={`${article.title}.img`}
-													height="10em"
-												/>
-											</BlurredImg>
-										</div>
-									</Group>
-									<Text fw={700} className={classes.title} mx={20}>
-										{article.title}
-									</Text>
-									<Text fz="sm" className={classes.desc} mx={20}>
-										{article.description}
-									</Text>
-								</Card.Section>
-								<Text fz="xs" c="dimmed" mx={8}>
-									{article.createdAt}
+												src={article.thumbnailUrl}
+												alt={`${article.title}.img`}
+												height="10em"
+											/>
+										</BlurredImg>
+									</div>
+								</Group>
+								<Text fw={700} className={classes.title} mx={20}>
+									{article.title}
 								</Text>
-								<Card.Section className={classes.footer}>
-									<Group>
-										<Avatar radius="xl" color="blue">
-											{article.member.nickname.substring(0, 1)}
-										</Avatar>
+								<Text fz="sm" className={classes.desc} mx={20}>
+									{article.description}
+								</Text>
+							</Card.Section>
+							<Text fz="xs" c="dimmed" mx={8}>
+								{article.createdAt}
+							</Text>
+							<Card.Section className={classes.footer}>
+								<Group>
+									<Avatar radius="xl" color="blue">
+										{article.member.nickname.substring(0, 1)}
+									</Avatar>
 
-										<Text fz="sm" fw={600}>
-											{article.member.nickname}
-										</Text>
-									</Group>
-								</Card.Section>
-							</Card>
-						))
-					)}
+									<Text fz="sm" fw={600}>
+										{article.member.nickname}
+									</Text>
+								</Group>
+							</Card.Section>
+						</Card>
+					))
+				)}
 			</SimpleGrid>
 		</InfiniteScroll>
 	);
 }
-

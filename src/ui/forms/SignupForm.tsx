@@ -18,7 +18,7 @@ import {
 } from '@tabler/icons-react';
 import { type ReactElement } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useInput } from '../../components/hooks/useInput';
+import useInput from '../../components/hooks/useInput';
 
 import useAuth from '../../components/auth/auth';
 

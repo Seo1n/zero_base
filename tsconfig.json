@@ -30,6 +30,6 @@
   "include": [
     "src/**/*.ts",
     "src/**/*.tsx",
-    "node_modules/@types",
+    "node_modules/@types", "src/ui/editor/resizableNodeSelected.jsx",
   ]
 }

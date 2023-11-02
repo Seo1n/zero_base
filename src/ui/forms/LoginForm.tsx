@@ -17,7 +17,7 @@ import { useForm } from '@mantine/form';
 import { type ReactElement } from 'react';
 import { Form, useNavigate } from 'react-router-dom';
 import useAuth from '../../components/auth/auth';
-import { useInput } from '../../components/hooks/useInput';
+import useInput from '../../components/hooks/useInput';
 
 function LoginForm(props: PaperProps): ReactElement {
 	const navigate = useNavigate();

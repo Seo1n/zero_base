@@ -19,13 +19,13 @@ import {
 import { useDisclosure } from '@mantine/hooks';
 import { IconArrowLeft, IconArrowRight, IconSearch } from '@tabler/icons-react';
 import axios, { type AxiosResponse } from 'axios';
-//   import { usePromptAnswer } from 'components/prompts/hooks/usePromptResponse';
 import { useCallback, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
-//   import { clearStoredGpt } from 'storage/gpt-storage';
-//   import { clearStoredRoadmap } from 'storage/roadmap-storage';
 import { styled } from 'styled-components';
-import { useInput } from '../../components/hooks/useInput';
+import { clearStoredGpt } from '../../storage/gptStorage';
+import { clearStoredRoadmap } from '../../storage/roadmapStorage';
+import usePromptAnswer from '../../components/prompts/usePromptResponse';
+import useInput from '../../components/hooks/useInput';
 import { baseUrl } from '../../axiosInstance/constants';
 import useAuth from '../../components/auth/auth';
 import { useUser } from '../../components/hooks/useUser';
@@ -113,13 +113,14 @@ export function InputWithButton(props: TextInputProps) {
 	const navigate = useNavigate();
 	const { user } = useUser();
 	const [isLoading] = useState(false);
-	// const { clearGptAnswer, updateGptAnswer } = usePromptAnswer();
+	// eslint-disable-next-line no-unused-vars, @typescript-eslint/no-unused-vars
+	const { clearGptAnswer, updateGptAnswer } = usePromptAnswer();
 	const [promptResponse, setPromptResponse] = useState<AxiosResponse | null>(
 		null
 	);
 
 	const onRequestPrompt = () => {
-		//   updateGptAnswer({ keyword: prompt });
+		updateGptAnswer({ keyword: prompt });
 		setPromptResponse(prompt);
 	};
 
@@ -323,8 +324,8 @@ export function HeaderMegaMenu() {
 										color="blue"
 										ml={10}
 										onClick={() => {
-											// clearStoredRoadmap();
-											// clearStoredGpt();
+											clearStoredRoadmap();
+											clearStoredGpt();
 											if (!user || !('accessToken' in user)) {
 												alert('로그인 후 이용가능합니다.');
 												navigate('/users/signin');
